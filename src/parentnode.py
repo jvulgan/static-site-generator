@@ -4,7 +4,9 @@ from typing import Dict, List
 
 
 class ParentNode(HTMLNode):
-    def __init__(self, tag: str, children: List[HTMLNode], props: Dict[str, str] | None = None):
+    def __init__(
+        self, tag: str, children: List[HTMLNode], props: Dict[str, str] | None = None
+    ):
         super().__init__(tag, None, children, props)
 
     def to_html(self):

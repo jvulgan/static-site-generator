@@ -14,6 +14,11 @@ class TestHTMLNode(unittest.TestCase):
         self.assertEqual(node.props_to_html(), expected)
 
     def test_props_to_html_multiple(self):
-        node = HTMLNode(props={"href": "https://www.google.com", "target": "_blank",})
+        node = HTMLNode(
+            props={
+                "href": "https://www.google.com",
+                "target": "_blank",
+            }
+        )
         expected = ' href="https://www.google.com" target="_blank"'
         self.assertEqual(node.props_to_html(), expected)
