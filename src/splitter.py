@@ -117,3 +117,10 @@ def text_to_textnodes(text: str) -> list[TextNode]:
             )
         )
     )
+
+def markdown_to_blocks(markdown: str) -> list[str]:
+    """
+    Take raw markdown text and split it into blocks defined by empty line.
+    """
+    blocks = markdown.split('\n\n')
+    return [block.strip() for block in blocks if block]
