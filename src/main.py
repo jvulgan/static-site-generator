@@ -1,9 +1,10 @@
 from textnode import TextType, TextNode
+from copyfiles import copy_files
 
 
 def main():
-    node = TextNode("This is some anchor text", TextType.LINK, "https://www.boot.dev")
-    print(node)
+    copy_files('static', 'public')
+
 
 
 if __name__ == "__main__":
