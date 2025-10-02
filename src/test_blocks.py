@@ -4,7 +4,7 @@ from unittest import TestCase
 
 class TestBlocks(TestCase):
     def test_block_to_block_type_heading(self):
-        blocks = ["#"*i + " Heading" for i in range(1, 7)]
+        blocks = ["#" * i + " Heading" for i in range(1, 7)]
         for block in blocks:
             self.assertEqual(block_to_block_type(block), BlockType.HEADING)
 

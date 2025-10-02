@@ -108,7 +108,9 @@ def text_to_textnodes(text: str) -> list[TextNode]:
         split_nodes_link(
             split_nodes_delimiter(
                 split_nodes_delimiter(
-                    split_nodes_delimiter([TextNode(text, TextType.TEXT)], "`", TextType.CODE),
+                    split_nodes_delimiter(
+                        [TextNode(text, TextType.TEXT)], "`", TextType.CODE
+                    ),
                     "_",
                     TextType.ITALIC,
                 ),
@@ -118,18 +120,20 @@ def text_to_textnodes(text: str) -> list[TextNode]:
         )
     )
 
+
 def markdown_to_blocks(markdown: str) -> list[str]:
     """
     Take raw markdown text and split it into blocks defined by empty line.
     """
-    blocks = markdown.split('\n\n')
+    blocks = markdown.split("\n\n")
     return [block.strip() for block in blocks if block]
+
 
 def extract_title(markdown: str) -> str:
     """
     Extract the heading (starting with single "#") from md text. Raises if not found.
     """
-    for line in markdown.split('\n'):
+    for line in markdown.split("\n"):
         if line.startswith("# "):
             heading = line
             break

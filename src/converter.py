@@ -25,17 +25,22 @@ def markdown_to_html_node(markdown: str) -> ParentNode:
         elif block_type == BlockType.CODE:
             children.append(handle_code(block))
         else:
-            raise Exception(f"got unexpected block type {block_type.value} in markdown_to_html_node")
+            raise Exception(
+                f"got unexpected block type {block_type.value} in markdown_to_html_node"
+            )
     return ParentNode("div", children)
 
+
 def handle_paragraph(block: str) -> ParentNode:
-    children = text_to_children(" ".join(block.split('\n')))
+    children = text_to_children(" ".join(block.split("\n")))
     return ParentNode("p", children)
 
+
 def handle_quote(block: str) -> ParentNode:
-    lines = [line.lstrip(">").strip() for line in block.split('\n')]
+    lines = [line.lstrip(">").strip() for line in block.split("\n")]
     children = text_to_children(" ".join(lines))
     return ParentNode("blockquote", children)
+
 
 def handle_heading(block: str) -> ParentNode:
     nr_of_hashes = 0
@@ -43,13 +48,14 @@ def handle_heading(block: str) -> ParentNode:
         if char != "#":
             break
         nr_of_hashes += 1
-    children = text_to_children(block[ nr_of_hashes + 1 : ])
+    children = text_to_children(block[nr_of_hashes + 1 :])
     return ParentNode(f"h{nr_of_hashes}", children)
+
 
 def handle_lists(block: str, block_type: BlockType) -> ParentNode:
     def create_line_children(block: str, nr: int) -> list[ParentNode]:
         children = []
-        for line in block.split('\n'):
+        for line in block.split("\n"):
             line_children = text_to_children(line[nr:])
             children.append(ParentNode("li", line_children))
         return children
@@ -61,10 +67,12 @@ def handle_lists(block: str, block_type: BlockType) -> ParentNode:
     else:
         raise Exception(f"got unexpected block type {BlockType.value} in handle_lists")
 
+
 def handle_code(block: str) -> ParentNode:
-    block = block.strip("```").lstrip('\n')
+    block = block.strip("```").lstrip("\n")
     code_node = text_node_to_html_node(TextNode(block, TextType.CODE))
     return ParentNode("pre", [code_node])
+
 
 def text_to_children(text: str) -> list[LeafNode]:
     """

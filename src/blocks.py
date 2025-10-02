@@ -4,6 +4,7 @@ import re
 
 HEADING_REGEX = re.compile(r"^\#{1,6}\ ")
 
+
 class BlockType(Enum):
     PARAGRAPH = "paragraph"
     HEADING = "heading"

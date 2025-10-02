@@ -17,4 +17,3 @@ def copy_files(src: str, dest: str):
             shutil.copy(item_path, dest)
         else:
             copy_files(item_path, os.path.join(dest, item))
-
