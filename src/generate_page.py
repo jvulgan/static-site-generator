@@ -16,3 +16,15 @@ def generate_page(from_path: str, template_path: str, dest_path: str):
     os.makedirs(os.path.dirname(dest_path), exist_ok=True)
     with open(dest_path, 'w') as f:
         f.write(page)
+
+
+def generate_page_recursive(dir_path_content: str, template_path: str, dest_dir_path: str):
+    for item in os.listdir(dir_path_content):
+        item_path = os.path.join(dir_path_content, item)
+        if os.path.isfile(item_path):
+            item = item.replace(".md", ".html")
+            dest_path = os.path.join(dest_dir_path, item)
+            generate_page(item_path, template_path, dest_path)
+        else:
+            dest_path = os.path.join(dest_dir_path, item)
+            generate_page_recursive(item_path, template_path, dest_path)
