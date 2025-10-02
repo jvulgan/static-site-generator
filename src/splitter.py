@@ -124,3 +124,15 @@ def markdown_to_blocks(markdown: str) -> list[str]:
     """
     blocks = markdown.split('\n\n')
     return [block.strip() for block in blocks if block]
+
+def extract_title(markdown: str) -> str:
+    """
+    Extract the heading (starting with single "#") from md text. Raises if not found.
+    """
+    for line in markdown.split('\n'):
+        if line.startswith("# "):
+            heading = line
+            break
+    else:
+        raise ValueError("provided markdown doesn't contain any heading")
+    return heading.lstrip("# ").strip()

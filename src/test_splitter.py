@@ -8,6 +8,7 @@ from splitter import (
     split_nodes_link,
     text_to_textnodes,
     markdown_to_blocks,
+    extract_title,
 )
 from textnode import TextType, TextNode
 
@@ -305,3 +306,22 @@ This is the same paragraph on a new line
                 "This is **bolded** paragraph",
             ],
         )
+
+    def test_extract_title_no_title(self):
+        md = """
+This is just some
+text
+in a paragraph
+"""
+        with self.assertRaises(ValueError):
+            extract_title(md)
+
+    def test_extract_title(self):
+        md = """
+# This is a title
+
+This is some
+text
+in a paragraph
+"""
+        self.assertEqual(extract_title(md), "This is a title")
