@@ -27,7 +27,7 @@ class TestTextNode(unittest.TestCase):
     def test_text_node_to_html_node_text(self):
         text_node = TextNode("text", TextType.TEXT)
         result = text_node_to_html_node(text_node)
-        self.assertEqual(result.tag, "")
+        self.assertEqual(result.tag, None)
         self.assertEqual(result.value, "text")
         self.assertIsNone(result.props)
 
