@@ -1,9 +1,9 @@
 name: Get New Package Versions
 
 on:
+  - push
   # TODO: replace with reasonable cron schedule
-  schedule:
-    - cron: '*/10 * * * *'
+
 
 jobs:
   create-prs:
