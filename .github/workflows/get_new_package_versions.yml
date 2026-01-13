@@ -1,5 +1,9 @@
 name: Get New Package Versions
 
+permissions:
+  contents: write
+  pull-requests: write
+
 on:
   - push
   # TODO: replace with reasonable cron schedule
