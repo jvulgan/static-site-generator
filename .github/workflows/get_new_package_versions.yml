@@ -12,12 +12,12 @@ jobs:
       - name: checkout code
         uses: actions/checkout@v4
       - name: update the packages.txt
-        run: echo "numpy==2.3.5" >> packages.txt
+        run: echo "numpy==2.3.5" >> content/packages.txt
       - name: create PR
         id: create-pr
         uses: peter-evans/create-pull-request@v8
         with:
-          add-paths: packages.txt
+          add-paths: content/packages.txt
           commit-message: Automatic build
           title: Automatic build
           branch-suffix: short-commit-hash
